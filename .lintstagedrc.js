@@ -1,8 +1,7 @@
 module.exports = {
-  // Lint & Prettify TS and JS files
   '*.{js,jsx,ts,tsx}': (filenames) => [
-    `prettier --write ${filenames.join(' ')}`,
-    `npm run lint --fix . ${filenames.join(' --file')}`,
-    `npm test -- --findRelatedTests ${filenames.join(' ')}`
+    `prettier --write ${filenames.map((f) => `"${f}"`).join(' ')}`,
+    `npm run lint --fix . ${filenames.map((f) => `--file "${f}"`).join(' ')}`,
+    `npm test -- --findRelatedTests ${filenames.map((f) => `"${f}"`).join(' ')}`
   ]
 }
